@@ -1,0 +1,2 @@
+ addpath(genpath('/Users/shettyakhil/Desktop/MATLAB')) - to add all files inside a particular folder in the search path
+ *(or use set path GUI)
