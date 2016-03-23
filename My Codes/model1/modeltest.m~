@@ -10,7 +10,7 @@ a = 1; % accepting prob
 s = 0.2; % self prob
 
 avgit = 10; %no. of iterations per set of parameters
-nlim = 10; %max pref attachment tested
+nlim = 5; %max pref attachment tested
 
 crarray = zeros(nlim, 2); % Column 1 is nlimit, Column 2 is number of new creative nodes
 crarray(:,1) = 1:nlim;
@@ -28,5 +28,5 @@ plot(crarray(:,1), crarray(:,2));
 % savefig(sprintf('%d_%d_%d_%f.fig',nodes, nlim, avgit, s));
 % load handel;
 % sound(y, Fs);
-save('crarray_WS_allaccept_selflisten_500_10_10.mat', 'crarray');
+save('crarray_WS_allaccept_selflisten_500_10_5.mat', 'crarray');
 

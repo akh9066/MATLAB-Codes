@@ -31,7 +31,7 @@ for k = 1:niter
 
                 if modad(nbr(v),nbr(v)) == 0
                     problist = problisten(modad, nbr(v), l);
-               %     probacc = probaccept(modad, nbr(v), cr(j), a);                  
+                    probacc = probaccept(modad, nbr(v), cr(j), a);                  
                     probcr = problist;%*probacc;              
                     modad(nbr(v),nbr(v)) = logical(rand() < probcr); % make it creative depending on listening and accepting probabilities
                 end
@@ -40,7 +40,7 @@ for k = 1:niter
         end
     end
     
-    newcr = length(find(diag(modad))) - z;  % number of new creative nodes generated in the given time interval
+    newcr = length(find(diag(modad))) - z  % number of new creative nodes generated in the given time interval
 end
 
  

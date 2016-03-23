@@ -1,4 +1,4 @@
-function newcr = fmodel2(seed,nodes,nlimit,niter,l,s,a)
+function newcr = fmodel2(seed,nodes,nlimit,niter,l,s,a, graphtype)
 
 
 % seed = random_graph(5);
@@ -10,7 +10,11 @@ function newcr = fmodel2(seed,nodes,nlimit,niter,l,s,a)
 % a = 1;
 % s = 0.5;
 
-modad = genBA(seed, nodes, nlimit);
+if (graphtype == 'BA')
+    modad = genBA(seed, nodes, nlimit); %generate a BA adjacency matrix
+elseif (graphtype == 'WS')
+    modad = genWS(nodes, nlimit,0.5); %generate a WS adjacency matrix
+end
 
 cr = [];
 
