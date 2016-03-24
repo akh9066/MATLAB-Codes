@@ -4,6 +4,7 @@ function probacc = probaccept(modad, i, j, a)
 
 n = length(modad(1,:));
 degj = degad(modad, j)^(a);
+degi = degad(modad, i)^(a);
 sumdeg = 0;
 
 modad(i,i) = 0;
@@ -15,7 +16,7 @@ for k = 1:length(nbr)
 end
 
 if (sumdeg~=0)
-    probacc = degj/sumdeg;
+    probacc = degi*(degj/sumdeg); % modified accepting probability (Distributing the degree)
 else
     probacc = 1;
 end
