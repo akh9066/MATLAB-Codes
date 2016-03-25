@@ -21,7 +21,7 @@ for nlimit = 1:nlim
         iteration = (nlimit-1)*avgit + crit
         toc 
         tic
-        crarray(nlimit,2) = crarray(nlimit,2) + fmodel1(seed, nodes, nlimit, niter, l, s, a, 'BP', nlimit, 0.032);   
+        crarray(nlimit,2) = crarray(nlimit,2) + fmodel1(seed, nodes, nlimit, niter, l, s, a, 'BP', plays, 0.1);   
     end
     
     crarray(nlimit, 2) = crarray(nlimit, 2)/avgit;
