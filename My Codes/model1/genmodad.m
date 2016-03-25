@@ -1,4 +1,4 @@
-function [modad, cr] = genmodad(modad, cr, s) 
+function [modad, cr] = genmodad(modad, dvec, sp,cr, s) 
 
 %%% Fading 
 
@@ -10,7 +10,8 @@ modad(nodeid) = 0; %Setting these nodes to zero, i.e fading
 noncr = find(~diag(modad));  %noncr is the list of non-creative nodes at present 
 
 for k = 1:length(noncr)
-    modad(noncr(k),noncr(k)) = logical(rand()<s);
+   % modad(noncr(k),noncr(k)) = logical(rand()<s);
+     modad(noncr(k),noncr(k)) = logical(rand()<sp/(sp+dvec(noncr(k))));
 end
 
 cr = find(diag(modad)); % cr is the new list of creative nodes after self generation of ideas with

@@ -1,4 +1,4 @@
-function newcr = fmodel1(seed,nodes,nlimit,niter,l,s,a,graphtype,plays,p)
+function newcr = fmodel1(seed,nodes,nlimit,niter,l,s,a,graphtype,plays,p,sp)
 
 
 % seed = random_graph(5);
@@ -23,8 +23,8 @@ cr = [];
 
 
 for k = 1:niter
-    [modad, cr] = genmodad(modad, cr, s); % new list of creative nodes and modad are generated 
     dvec = degvec(modad); % vector containing degrees of all nodes
+    [modad, cr] = genmodad(modad, dvec, sp, cr, s); % new list of creative nodes and modad are generated 
     z = length(cr); %no. of creative nodes
     if length(cr) ~= 0
         for j = 1:length(cr)  % for every creative node
@@ -35,9 +35,9 @@ for k = 1:niter
             for v = 1:length(nbr)   % for every meighbor of the given creative node
 
                 if modad(nbr(v),nbr(v)) == 0
-                    problist = problisten(modad, nbr(v), l);
-                    probacc = fprobaccept(dvec, modad, nbr(v), cr(j), a);                  
-                    probcr = problist*probacc;              
+                    problist = problisten(modad, nbr(v), l, sp);
+                    %probacc = fprobaccept(dvec, modad, nbr(v), cr(j), a);                  
+                    probcr = problist;%*probacc;              
                     modad(nbr(v),nbr(v)) = logical(rand() < probcr); % make it creative depending on listening and accepting probabilities
                 end
             end
