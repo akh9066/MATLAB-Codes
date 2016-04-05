@@ -1,4 +1,4 @@
-function newcr = fmodel1(seed,nodes,nlimit,niter,l,s,a,graphtype,plays,p,sp)
+function newcr = fmodel1(nodes,nlimit,m0,niter,l,s,a,graphtype,plays,p,sp)
 
 
 % seed = random_graph(5);
@@ -12,11 +12,14 @@ function newcr = fmodel1(seed,nodes,nlimit,niter,l,s,a,graphtype,plays,p,sp)
 % p - prob of actor being in a particular play
 
 if (graphtype == 'BA')
-    modad = genBA(seed, nodes, nlimit); %generate a BA adjacency matrix
+    modad = BA_model(nodes, nlimit, m0); %generate a BA adjacency matrix
+    % for BA, avg degree ~ 2*nlimit
 elseif (graphtype == 'WS')
     modad = genWS(nodes, nlimit,0.5); %generate a WS adjacency matrix
+    % for WS, avg degree ~2*nlimit
 elseif (graphtype == 'BP')
     modad = genBP(plays, nodes, p);
+    % for BP, avg degree ~ mnp^2 (for small p)
 end
 
 cr = [];
@@ -36,8 +39,8 @@ for k = 1:niter
 
                 if modad(nbr(v),nbr(v)) == 0
                     problist = problisten(modad, nbr(v), l, sp);
-                    %probacc = fprobaccept(dvec, modad, nbr(v), cr(j), a);                  
-                    probcr = problist;%*probacc;              
+                    probacc = fprobaccept(dvec, modad, nbr(v), cr(j), a);                  
+                    probcr = problist*probacc;              
                     modad(nbr(v),nbr(v)) = logical(rand() < probcr); % make it creative depending on listening and accepting probabilities
                 end
             end

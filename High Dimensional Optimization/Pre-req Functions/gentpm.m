@@ -19,5 +19,6 @@ if type == 'grid'
    
 elseif type == 'I'
     tpm = eye(n);
+    
 end
 

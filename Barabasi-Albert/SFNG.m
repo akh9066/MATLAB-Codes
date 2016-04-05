@@ -22,11 +22,11 @@ while pos < Nodes
     linkage = 0;
     linka = 0;
     while linkage ~= mlinks
-        linka = linka +1;
-         if linka > 10000
-           
-           break;
-        end
+        linka = linka +1
+%          if linka > 10000
+%            
+%            break;
+%         end
         rnode = ceil(rand * (pos-1));
         deg = sum(Net(:,rnode));
         rlink = rand * 1;

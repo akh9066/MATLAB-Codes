@@ -1,4 +1,4 @@
-m = 3;      %mXm grid
+m = 4;      %mXm grid
 n = m^2;
 T = 2.5;
 %np = 1; %noise parameter
@@ -21,15 +21,15 @@ g = gradient(f, [x1 x2]);
 %dom represents domain with each row denoting range of corr dimension
 %dom = [-5.12 5.11; -5.12 5.11]; %drop wave
 %dom = [-10 9.99; -10 9.99]; %booth function
-dom = [-5 4.99; -5 4.99]; %three hump camel
+dom = [-5 4.5; -5 4.99]; %three hump camel
 x = [dom(1,1):-2*dom(1,1)/n:dom(1,2); dom(2,1):-2*dom(2,1)/n:dom(2,2)].'; %initializing x 
 tpm = gentpm('grid', m); % setting type of gossip matrix
 F = zeros(n);
-niter = 50000;
+niter = 1;
 
 for k = 1:niter
     k 
-    xmod = x + npstep(k)*xnoise(k+1,n);    %adding noise to avoid local minima
+    xmod = x% + npstep(k)*xnoise(k+1,n);    %adding noise to avoid local minima
     x1 = xmod(:,1);
     x2 = xmod(:,2);
     
@@ -46,10 +46,10 @@ for k = 1:niter
             x2(l) = dom(2,1);
         end
     end
-    xmod;
-    F = double(subs(f));
-    tpm = gentpmexp(m,T,F);
-    gradf = double([subs(g(1)) subs(g(2))]); %gradient matrix
+    xmod
+    F = double(subs(f))
+    tpm = gentpmexp(m,T,F)
+    gradf = double([subs(g(1)) subs(g(2))]) %gradient matrix
     x = tpm*x - stepsize(k)*gradf; %non-linear gossip iteration
 end
 
