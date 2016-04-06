@@ -19,7 +19,7 @@ if strcmp(type,'grid')
    coord(:,1) = mod(0:n-1,m)+1;
    coord(:,2) = ceil((1:n)/m);
    
-elseif strcmp(type,'ring')
+elseif type,'ring'
     tpm = zeros(n,n);
     tpm(1,2) = 1;
     tpm(1,n) = 1;
@@ -32,12 +32,12 @@ elseif strcmp(type,'ring')
     
     tpm = tpm/2;
 
-elseif strcmp(type,'FC')
+elseif type == 'FC'
     tpm = ones(n,n);
     tpm = tpm - eye(n);
     tpm = tpm/(n-1);
    
-elseif strcmp(type,'I')
+elseif type == 'I'
     tpm = eye(n);
     
 end

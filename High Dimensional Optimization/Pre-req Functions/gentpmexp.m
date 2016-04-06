@@ -1,7 +1,8 @@
-function [tpm] = gentpmexp(m, T, F)
+function [tpm] = gentpmexp(type, n, T, F)
 
-n = m^2;
-tpm = gentpm('grid', m);
+m = sqrt(n);
+
+tpm = gentpm(type, n);
 
 for i = 1:n
     for j = 1:n

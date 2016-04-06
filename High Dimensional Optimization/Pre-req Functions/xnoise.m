@@ -1,4 +1,4 @@
-function xn = xnoise(k,n)
+function xn = xnoise(fstep,n)
 
-xn =2*( -0.5 + rand(n,2));
+xn = fstep*2*( -0.5 + rand(n,2));
 
