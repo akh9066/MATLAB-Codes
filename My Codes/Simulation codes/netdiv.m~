@@ -1,0 +1,27 @@
+
+nodes = 500
+K = 25;
+r = 0.2;
+
+adgraph = genWS(nodes,K,r); %adjacency matrix of network
+
+degvec = sum(adgraph,2);    %vector of node degrees
+crvec = genNodecr(adgraph); %vector of node creativities
+
+degcr = zeros(nodes,2); % vector of degree vs avg creativity
+
+for i=1:nodes
+    degcr(degvec(i)+1,1) = degcr(degvec(i)+1,1) + crvec(i);
+    degcr(degvec(i)+1,2) = degcr(degvec(i)+1,2) + 1;
+end
+
+degcr(:,1) = deg(:,1)./deg(:,2);
+
+plot(degcr(:,1),de
+
+
+
+
+
+
+

@@ -36,10 +36,11 @@ number_of_connected_nodes = m0 ;
 while(number_of_connected_nodes < size )
     %each new node has m outgoing connections.
     outgoing = 0 ; 
+    iter = 0;
     while( outgoing < m )
         cumulative_node_num = random('Discrete Uniform', connection_number);
         node_num = connection_node(cumulative_node_num);
-    
+        iter = iter+1
         if(H(number_of_connected_nodes + 1, node_num) == 0 && node_num ~= number_of_connected_nodes + 1)
             H(number_of_connected_nodes + 1, node_num) = 1;
             H(node_num , number_of_connected_nodes + 1) = 1;
