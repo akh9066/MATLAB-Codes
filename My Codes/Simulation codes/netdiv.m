@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 close all 
 clear all
 rng shuffle
@@ -19,6 +20,22 @@ adgraph = netstrength.*genWS(nodes,K,r); %adjacency matrix of network
 %adgraph = BA_model(nodes,m, m0);
 
 degvec = sum(adgraph>0,2);    %vector of node degrees
+=======
+%close all 
+clear all
+
+nodes = 500;
+K = 5;
+r = 1;
+
+m = 5;
+m0 = 2;
+
+%adgraph = genWS(nodes,K,r); %adjacency matrix of network
+adgraph = BA_model(nodes,m, m0);
+
+degvec = sum(adgraph,2);    %vector of node degrees
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 crvec = genNodecr(adgraph); %vector of node creativities
 
 degcr = zeros(nodes,2); % vector of degree vs avg creativity
@@ -34,7 +51,11 @@ figure();
 plot([0:nodes-1]',degcr(:,1));
 
 
+<<<<<<< HEAD
 toc
+=======
+
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 
 
 

@@ -63,8 +63,13 @@ for iter = 1:niter
         end
     end
 end
+<<<<<<< HEAD
 % figure()
 % surf(x1,x2,F);
+=======
+figure()
+surf(x1,x2,F);
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 figure()
 surf(x1,x2,u);
             

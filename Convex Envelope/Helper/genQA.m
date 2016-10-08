@@ -66,7 +66,7 @@ switch func
         [x1pt,x2pt,npt,x1,x2,step] = setArg(dom,scale);
         g = zeros(npt,1);
         for i = 1:npt
-            g(i) = -cos(x1(i))*cos(x2(i))*exp(-(x1(i)-4)^2 - (x2(i)-4)^2) + 2; %+2
+            g(i) = -cos(x1(i))*cos(x2(i))*exp(-(x1(i)-pi)^2 - (x2(i)-pi)^2)+2; %+2
         end
         
     case 'rosenbrock'
@@ -82,7 +82,7 @@ switch func
         [x1pt,x2pt,npt,x1,x2,step] = setArg(dom,scale);
         g = zeros(npt,1);
         for i = 1:npt
-            g(i) = -(1+cos(12*sqrt(x1(i)^2+x2(i)^2)))/(0.5*(x1(i)^2+x2(i)^2)+2) + 2; %+2
+            g(i) = -(1+cos(12*sqrt(x1(i)^2+x2(i)^2)))/(0.5*(x1(i)^2+x2(i)^2)+2) + 1; %+1
         end
         
     case 'schwefel'
@@ -112,11 +112,19 @@ switch basis
         A = zeros(2*npt,4*p*q);
     case 'polar'
         Q = polarphi(dom,step,K,ntheta);
-        A = zeros(2*npt,2*K*ntheta);
+        A = zeros(2*npt,2*K*ntheta);      
+    case 'polarneg'
+        Q = polarnegphi(dom,step,K,ntheta);
+        A = zeros(2*npt,4*K*ntheta);
     case 'linasym'
         Q = linasymphi(dom,step,K,p,q);
         A = zeros(2*npt,2*K+4*p*q);
-        
+    case 'linasymneg'
+        Q = linasymnegphi(dom,step,K,p,q);
+        A = zeros(2*npt,2*(2*K+4*p*q));
+    case 'polarasym'
+        Q = polarasymphi(dom,step,K,p,q,ntheta);
+        A = zeros(2*npt,4*p*q+2*K*ntheta);
     otherwise 
         error('Not a valid basis name');
 

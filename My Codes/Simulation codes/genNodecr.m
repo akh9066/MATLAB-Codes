@@ -13,7 +13,11 @@ for i = 1:nodes
         for k = j+1:numnbr
             % indcr - time based creativity, paircr - effect of edge
             % between nbrs
+<<<<<<< HEAD
             crsum = crsum + paircr(adgraph(i,nbr(j)),adgraph(i,nbr(k)),adgraph(nbr(j),nbr(k)));
+=======
+            crsum = crsum + paircr(adgraph(nbr(j),nbr(k)));
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
             numpair = numpair + 1;
         end 
     end

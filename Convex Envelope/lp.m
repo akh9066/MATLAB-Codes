@@ -1,5 +1,9 @@
 clear all
+<<<<<<< HEAD
 %syms x1 x2;
+=======
+syms x1 x2;
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 %%%% Working with 2-D domain functions 
 %%%% Set of Test Functions (Uncomment whichever function needs to be used)%
 %f = -5*(1+cos(12*sqrt(x1^2+x2^2)))/(0.5*(x1^2+x2^2)+2); %Drop wave function
@@ -9,7 +13,11 @@ clear all
 %bukin function
 %f = -0.0001*(abs(sin(x1)sin(x2)exp(abs(100-sqrt(x1^2+x2^2)/pi)))+1)^0.1;
 %f = ((1-x1)^2 + 100*(x2-x1^2)^2)/1000; %rosenbrock fn
+<<<<<<< HEAD
 %f = 5*(1 + (x1^2+x2^2)/4000 - cos(x1)*cos(x2/sqrt(2)));%griewank fn
+=======
+f = 5*(1 + (x1^2+x2^2)/4000 - cos(x1)*cos(x2/sqrt(2)));%griewank fn
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 %f = (418.9829*2 - (x1*sin(x1) + x2*sin(sqrt(abs(x2)))))/2; %schwefel fn
 
 
@@ -17,10 +25,16 @@ clear all
 %f = cos(x1) + cos(x2);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+<<<<<<< HEAD
 dom = [-10 10;-10 10];
 %dom = [-512 512;-512 512];
 %dom = [-5 5; -5 5];
 step = 0.5;
+=======
+%dom = [-10 10;-10 10];
+dom = [-5 5; -5 5];
+step = 0.25;
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 
 x1rng = dom(3) - dom(1);
 x2rng = dom(4) - dom(2);
@@ -32,6 +46,7 @@ x1 = repmat([dom(1):step:dom(3)]',x2pt,1);
 x2mat = repmat([dom(2):step:dom(4)],x1pt,1);
 x2 = reshape(x2mat,npt,1);
 
+<<<<<<< HEAD
 g = zeros(npt,1);
 for i = 1:npt
     %g(i) = 10*2 + x1(i)^2-10*cos(2*pi*x1(i)) + x2(i)^2 -10*cos(2*pi*x2(i)); %rastrigin 
@@ -47,6 +62,15 @@ end
 f = -ones(npt,1);
 
 %f = zeros(npt,1);
+=======
+%g = double(subs(f));
+g = zeros(npt,1);
+for i = 1:npt
+    g(i) = 10*2 + x1(i)^2-10*cos(2*pi*x1(i)) + x2(i)^2 -10*cos(2*pi*x2(i)); %rastrigin 
+end
+
+f = -ones(npt,1);
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 %f(ceil(npt/2)) = -1;
 
 %f(800) = -1;
@@ -75,6 +99,7 @@ u = linprog(f,A,b,Aeq,beq,lb,ub);
 F = reshape(g,x1pt,x2pt)';
 U = reshape(u,x1pt,x2pt)';
 
+<<<<<<< HEAD
 x1grid = [dom(1):step:dom(3)];
 x2grid = [dom(2):step:dom(4)];
 
@@ -84,5 +109,14 @@ figure();
 surf(x1grid,x2grid,U);
 
 plotMinMax(x1grid,x2grid,U);
+=======
+x1mesh = repmat([dom(1):step:dom(3)],x2pt,1);
+x2mesh = repmat([dom(2):step:dom(4)]',1,x1pt);
+
+figure();
+surf(x1mesh,x2mesh,F);
+figure();
+surf(x1mesh,x2mesh,U);
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
         
         

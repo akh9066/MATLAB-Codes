@@ -34,8 +34,15 @@ toc
 
 figure();
 plot(crarray(:,1), crarray(:,2));
+<<<<<<< HEAD
 %savefig('crarray_BA_modaccept_sp5listen_500_30_20.fig');
 % load handel;
 % sound(y, Fs);
 %save('crarray_BA_modaccept_sp5listen_500_30_20.mat', 'crarray');
+=======
+savefig('crarray_BA_modaccept_sp5listen_500_30_20.fig');
+% load handel;
+% sound(y, Fs);
+save('crarray_BA_modaccept_sp5listen_500_30_20.mat', 'crarray');
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 

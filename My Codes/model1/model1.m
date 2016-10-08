@@ -7,6 +7,11 @@
 %creativity acceptance function - once idea is listened to, the probability
 %of accepting is directly proportional to the degree of the source
 
+<<<<<<< HEAD
+=======
+clear all;
+
+>>>>>>> 0b6f1e4d24487e8cc718e48d81c82ab7ebf80da5
 function newcr = model1(seed, nodes, nlimit, niter, l, a, s)
 
 % seed = random_graph(5);

@@ -6,8 +6,8 @@ close all
 rng shuffle
 
 func = 'easom';
-basis = 'linasym';
-rowSamp = 'convex'; 
+basis = 'polar';
+rowSamp = '1/3'; 
 
 scale = 80; 
 
@@ -16,7 +16,7 @@ p = 15;
 q = 15;
 ntheta = 20;
 
-probConstr = 1;
+probConstr = 0.05;
 
 [Q,A,g,x1pt,x2pt,npt,x1,x2,step,dom] = genQA(func,basis,scale,K,p,q,ntheta);
 
@@ -56,6 +56,7 @@ b = [zeros(2*npt,1);g];
 
 A = [A;Q];
 AMatrix = [A b;f 0];
+[nconstr,nbasis] = size(AMatrix); 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 switch rowSamp   
@@ -78,7 +79,16 @@ switch rowSamp
      
     case '1/3'      
         for i = 1:npt
-            AMatrix(randi([0 2])*npt+i,:) = 0;
+            sampChosen = randi([0 2]);
+            if ~isequal(AMatrix(sampChosen*npt+i,:),zeros(1,nbasis))       %To account for margins of domain
+                AMatrix((mod(sampChosen+1,3))*npt+i,:) = 0;
+                AMatrix((mod(sampChosen-1,3))*npt+i,:) = 0;
+            else
+%                 sampChosen = mod(sampChosen+1,3);
+%                 if ~isequal(AMatrix(sampChosen*npt+i,:),zeros(1,nbasis))
+%                     AMatrix((mod(sampChosen+1,3))*npt+i,:) = 0;
+%                 end
+            end 
         end
         
     otherwise         
